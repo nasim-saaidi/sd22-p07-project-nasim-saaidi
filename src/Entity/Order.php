@@ -23,15 +23,15 @@ class Order
 
     #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?product $product_id = null;
+    private ?Product $product_id = null;
 
     #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?customer $customer_id = null;
+    private ?Customer $customer_id = null;
 
     #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?size $size_id = null;
+    private ?Size $size_id = null;
 
 
 

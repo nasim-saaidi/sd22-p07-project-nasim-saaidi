@@ -21,7 +21,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: product::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $product_id;
 
     public function __construct()

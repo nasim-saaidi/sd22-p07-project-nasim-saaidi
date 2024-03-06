@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +17,17 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'hello, im bussin'
+        ]);
+    }
+
+    #[Route('/front', name: 'app_front')]
+    public function front(EntityManagerInterface $entityManager): Response
+    {
+        $category = $entityManager->getRepository(Category::class)->findAll();
+
+        return $this->render('front/index.html.twig', [
+            'category' => $category,
+            'controller_name' => 'FrontController',
         ]);
     }
 }

@@ -68,20 +68,18 @@
         <br>
         <div class="container ">
             <div class="row justify-content-center">
-                <div class="col-2">
-                    <img class="img-fluid" src="{{ asset("img/electric.jpg") }}" alt="elec" >
-                </div>
+                {% for categories in category %}
 
-                <div class="col-2">
-                    <img class="img-fluid" src="{{ asset("img/hybrid.jpg") }}" alt="elec" >
-                </div>
+                    <div class="col-3">
+                        <img class="img-fluid" src="{{ asset(categories.img) }}" alt="elec">
+                        <div><p class="text-center"> {{ categories.name }} </p></div>
+                        <br>
+                        <a type="button" href=""  class=" w-100 btn btn-primary">klik</a>
 
-                <div class="col-2">
-                    <img class="img-fluid" src="{{ asset("img/fossil.png") }}" alt="elec" >
-                </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-
         <hr>
         <p class="text-center">
             Contact:
