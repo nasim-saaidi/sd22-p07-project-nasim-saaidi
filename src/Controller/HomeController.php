@@ -20,7 +20,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/front', name: 'app_front')]
     public function front(EntityManagerInterface $entityManager): Response
     {
         $category = $entityManager->getRepository(Category::class)->findAll();

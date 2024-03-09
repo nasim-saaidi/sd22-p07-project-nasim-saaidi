@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FrontController extends AbstractController
 {
-
+    #[Route('/front', name: 'app_front')]
     public function show(EntityManager $entityManager, $category): Response
     {
         $categoryShow = $entityManager->getRepository(Category::class)->find($category);
