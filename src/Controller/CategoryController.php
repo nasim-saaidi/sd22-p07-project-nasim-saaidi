@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CategoryController extends AbstractController
 {
+
     #[Route('/category/{category}', name: 'app_category')]
     public function show(EntityManagerInterface $entityManager, $content ): Response
     {
