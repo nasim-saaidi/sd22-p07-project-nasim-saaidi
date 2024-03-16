@@ -15,49 +15,54 @@ class Order
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?product $product = null;
+
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $total_price = null;
 
-    #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Product $product_id = null;
+    #[ORM\Column(length: 255)]
+    private ?string $first_name = null;
 
-    #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Customer $customer_id = null;
+    #[ORM\Column(length: 255)]
+    private ?string $last_name = null;
 
-    #[ORM\OneToOne(inversedBy: 'order_id', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Size $size_id = null;
+    #[ORM\Column(length: 255)]
+    private ?string $street_name = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $house_number = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $zip_code = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $size = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): static
+    public function getProduct(): ?product
     {
-        $this->id = $id;
+        return $this->product;
+    }
+
+    public function setProduct(product $product): static
+    {
+        $this->product = $product;
 
         return $this;
     }
 
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
 
     public function getTotalPrice(): ?string
     {
@@ -71,42 +76,87 @@ class Order
         return $this;
     }
 
-    public function getProductId(): ?product
+    public function getFirstName(): ?string
     {
-        return $this->product_id;
+        return $this->first_name;
     }
 
-    public function setProductId(product $product_id): static
+    public function setFirstName(string $first_name): static
     {
-        $this->product_id = $product_id;
+        $this->first_name = $first_name;
 
         return $this;
     }
 
-    public function getCustomerId(): ?customer
+    public function getLastName(): ?string
     {
-        return $this->customer_id;
+        return $this->last_name;
     }
 
-    public function setCustomerId(customer $customer_id): static
+    public function setLastName(string $last_name): static
     {
-        $this->customer_id = $customer_id;
+        $this->last_name = $last_name;
 
         return $this;
     }
 
-    public function getSizeId(): ?size
+    public function getStreetName(): ?string
     {
-        return $this->size_id;
+        return $this->street_name;
     }
 
-    public function setSizeId(size $size_id): static
+    public function setStreetName(string $street_name): static
     {
-        $this->size_id = $size_id;
+        $this->street_name = $street_name;
 
         return $this;
     }
 
+    public function getHouseNumber(): ?string
+    {
+        return $this->house_number;
+    }
 
+    public function setHouseNumber(string $house_number): static
+    {
+        $this->house_number = $house_number;
 
+        return $this;
+    }
+
+    public function getZipCode(): ?string
+    {
+        return $this->zip_code;
+    }
+
+    public function setZipCode(string $zip_code): static
+    {
+        $this->zip_code = $zip_code;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(string $size): static
+    {
+        $this->size = $size;
+
+        return $this;
+    }
 }

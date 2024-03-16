@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
 
-<title>Hello CategoryController!</title>
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="row">
+   {% for product in category.products %}
+       <div class="card col-3" style="width: 18rem;">
+           <img class="img-fluid" src="{{ asset(product.img) }}" alt="elec">
+           <div class="card-body">
+               <h5 class="card-title"> {{ product.name }}</h5>
+               <p class="card-text">{{ product.price }}</p>
+               <a type="button" href="{{ path("app_order", {"product": product.id}) }}"  class=" w-100 btn btn-primary">klik</a>
 
-   {% for product in content %}
-    {{ product.name }}
-
+           </div>
+       </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}
