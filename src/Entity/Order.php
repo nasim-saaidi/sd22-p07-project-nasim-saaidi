@@ -17,7 +17,7 @@ class Order
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?product $product = null;
+    private ?Product $product = null;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
@@ -51,12 +51,12 @@ class Order
         return $this->id;
     }
 
-    public function getProduct(): ?product
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    public function setProduct(product $product): static
+    public function setProduct(Product $product): static
     {
         $this->product = $product;
 
