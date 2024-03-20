@@ -19,9 +19,6 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $status = null;
-
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $total_price = null;
 

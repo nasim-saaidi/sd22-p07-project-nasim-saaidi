@@ -31,11 +31,6 @@ class OrderType extends AbstractType
                     'v-16 motor + 200 euro' => 'v-16'
                 ]
             ])
-            ->add('product', EntityType::class, [
-                'class' => Product::class,
-                'choice_label' => 'id',
-
-            ])
             ->add('submit', SubmitType::class)
         ;
     }

@@ -28,13 +28,21 @@ class OrderController extends AbstractController
         $product = $entityManager->getRepository(Product::class)->find($product);
 
         if($form->isSubmitted() && $form->isValid()) {
-            //data halen uit formulir, geeft gevulde entity aan
-            $task = $form->getData();
+            $order = $form->getData();
+            $order->setProduct($product);
+            $size = $order->getSize();
 
-            //voeren de entity in de entitymanager in
-            $entityManager->persist($task);
+            $extraPrice = 0;
+            if ($size === 'v-12') {
+                $extraPrice = 100;
+            } elseif ($size === 'v-16') {
+                $extraPrice = 200;
+            }
 
-            //spoelen de entityManager, zo komt de data in de database
+            //veranderen prijs product
+            $order->setTotalPrice($product->getPrice() + $extraPrice);
+
+            $entityManager->persist($order);
             $entityManager->flush();
 
             //flash message aanmaken
@@ -43,35 +51,14 @@ class OrderController extends AbstractController
                 'De order is toegevoegd'
             );
 
-            $order = $form->getData();
-            $order->setProduct($product);
-            $size = $order->getSize();
-            $order->setProduct();
-
-            if ($size === 'v-8') {
-                $extraPrice = 0;
-            }
-            if ($size === 'v-12') {
-                $extraPrice = 100;
-            }
-            if ($size === 'v-16') {
-                $extraPrice = 200;
-            }
-
             //stuur naar ander page
             return $this->redirectToRoute('app_front');
-
-
-
         }
 
-
-        $order = $entityManager->getRepository(Order::class)->findAll();
+//        $order = $entityManager->getRepository(Order::class)->findAll();
         return $this->render('order/new.html.twig', [
             'form' =>$form,
             'controller_name' => 'OrderController',
-
-
         ]);
 
     }
