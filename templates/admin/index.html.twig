@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <table class="table">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">model</th>
+            <th scope="col">voornaam</th>
+            <th scope="col">achternaam</th>
+            <th scope="col">straatnaam</th>
+            <th scope="col">huisnummer</th>
+            <th scope="col">zipcode</th>
+            <th scope="col">stad</th>
+            <th scope="col">motor</th>
+            <th scope="col">prijs</th>
+
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.Firstname }}</td>
+                <td>{{ order.LastName }}</td>
+                <td>{{ order.StreetName }}</td>
+                <td>{{ order.HouseNumber }}</td>
+                <td>{{ order.ZipCode }}</td>
+                <td>{{ order.City }}</td>
+                <td>{{ order.Size }}</td>
+                <td>{{ order.TotalPrice }}</td>
+                <td><a href="{{ path('app_order_delete', {'order': order.id}) }}"
+                       class="btn btn-sm btn-outline-danger">Wis</a></td>
+            </tr>
+
+
+        {% endfor %}
+    </table>
+{% endblock %}

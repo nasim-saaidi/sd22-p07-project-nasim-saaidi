@@ -11,7 +11,6 @@
                <h5 class="card-title"> {{ product.name }}</h5>
                <p class="card-text">{{ product.price }}</p>
                <a type="button" href="{{ path("app_order", {"product": product.id}) }}"  class=" w-100 btn btn-primary">klik</a>
-
            </div>
        </div>
     {% endfor %}

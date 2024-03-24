@@ -15,11 +15,9 @@ class Order
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Product $product = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $total_price = null;
 
     #[ORM\Column(length: 255)]
@@ -31,7 +29,7 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $street_name = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
     private ?string $house_number = null;
 
     #[ORM\Column(length: 255)]
@@ -43,21 +41,12 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $size = null;
 
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    private ?Product $product = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getProduct(): ?Product
-    {
-        return $this->product;
-    }
-
-    public function setProduct(Product $product): static
-    {
-        $this->product = $product;
-
-        return $this;
     }
 
 
@@ -153,6 +142,18 @@ class Order
     public function setSize(string $size): static
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): static
+    {
+        $this->product = $product;
 
         return $this;
     }
