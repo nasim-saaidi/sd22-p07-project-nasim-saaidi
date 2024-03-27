@@ -29,7 +29,10 @@ class AdminController extends AbstractController
         $entityManager->flush();
 
 
-
+        $this->addFlash(
+            'success',
+            'order is verwijdert'
+        );
         return $this->redirectToRoute('app_admin');
 
     }

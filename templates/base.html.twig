@@ -22,7 +22,13 @@
     {% endblock %}
 </head>
 <body class="bg-light">
-
+{% for label, messages in app.flashes %}
+    {% for msg in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ msg }}
+        </div>
+    {% endfor %}
+{% endfor %}
 {% include "nav.html.twig" %}
 {% block body %}{% endblock %}
 </body>
